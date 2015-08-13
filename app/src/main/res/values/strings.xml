@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Ez Onboarding</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_one">First Title</string>
+    <string name="title_two">Second Title</string>
+
+    <string name="description_one">First Description</string>
+    <string name="description_two">Second Description</string>
+</resources>
