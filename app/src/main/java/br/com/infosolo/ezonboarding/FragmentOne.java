@@ -42,19 +42,14 @@ public class FragmentOne extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_one, container, false);
+        //TODO: CHANGE THIS TO AUTOMATICALLY SET TAG FROM ADAPTER
         view.setTag(1);
-//        List<View> list = new ArrayList<>();
-//        list.add(view.findViewById(R.id.title));
-//        list.add(view.findViewById(R.id.computer));
-//        list.add(view.findViewById(R.id.description));
 
-        Map<View, Object> map = new HashMap<>();
-        map.put(view.findViewById(R.id.title), "1");
-        map.put(view.findViewById(R.id.computer), "2");
-        map.put(view.findViewById(R.id.description), "3");
-        map.put(view.findViewById(R.id.laga), "2");
-//        introPageTransformer.setViews(list);
-        introPageTransformer.setViewMap(map);
+        Map<View, AnimationEnum> map = new HashMap<>();
+        map.put(view.findViewById(R.id.title), AnimationEnum.Animation1);
+        map.put(view.findViewById(R.id.computer), AnimationEnum.Animation2);
+        map.put(view.findViewById(R.id.description), AnimationEnum.Animation3);
+        introPageTransformer.setViewMapAnimation(map);
         return view;
     }
 }

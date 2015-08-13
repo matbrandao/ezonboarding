@@ -23,14 +23,6 @@
             android:layout_marginTop="32dp"
             android:textSize="28sp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/laga"
-            android:text="New Text Shit"
-            android:layout_gravity="top|center"
-            android:textSize="28sp"/>
-
         <ImageView
             android:id="@+id/computer"
             android:layout_width="50dp"
@@ -55,5 +47,4 @@
             android:textSize="20sp"/>
 
     </FrameLayout>
-
 </FrameLayout>

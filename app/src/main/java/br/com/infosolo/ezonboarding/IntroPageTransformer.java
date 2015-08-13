@@ -3,6 +3,8 @@ package br.com.infosolo.ezonboarding;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,15 +15,26 @@ public class IntroPageTransformer implements ViewPager.PageTransformer{
 
     private View mView1;
     private List<View> mViews;
-    private Map<View, Object> viewMap;
+    private Map<View, AnimationEnum> viewMap;
 
-    public void setViews(List<View> views) {
-        mViews = views;
-    }
+//    public void setViews(List<View> views) {
+//        mViews = views;
+//    }
 
-    public void setViewMap(Map<View, Object> viewMap) {
+    public void setViewMapAnimation(Map<View, AnimationEnum> viewMap) {
+//        List<AnimationEnum> animationEnums = new ArrayList<>();
+//        Map<View, List<AnimationEnum>> viewListMap = new HashMap<>();
+//        for (View view : viewMap.keySet()) {
+//            animationEnums.add(viewMap.get(view));
+//            viewListMap.put(view, animationEnums);
+//        }
+//        setViewMapAnimations(viewListMap);
         this.viewMap = viewMap;
     }
+
+//    public void setViewMapAnimations(Map<View, List<AnimationEnum>> viewMap) {
+//        this.viewMap = viewMap;
+//    }
 
     @Override
     public void transformPage(View page, float position) {
@@ -37,10 +50,6 @@ public class IntroPageTransformer implements ViewPager.PageTransformer{
     }
 
     private void transformOne(View page, float position) {
-        int pageWidth = page.getWidth();
-        float pageWidthTimesPosition = pageWidth * position;
-        float absPosition = Math.abs(position);
-
         if (position <= -1.0f || position >= 1.0f) {
             // The page is not visible. This is a good place to stop
             // any potential work / animations you may have running.
@@ -49,19 +58,17 @@ public class IntroPageTransformer implements ViewPager.PageTransformer{
             // after animations as you can't always count on the PageTransformer
             // callbacks to match up perfectly.
         } else {
+            //TODO: CHANGE THIS @FOR;
             for (View view : viewMap.keySet()) {
-                switch (Integer.valueOf((String) viewMap.get(view))) {
-                    //TODO: CHANGE CASES FOR ENUM WITH ANIMATION TYPE;
-                    case 1:
-                        view.setAlpha(1.0f - absPosition);
+                switch (viewMap.get(view)) {
+                    case Animation1:
+                        fadeOut(page, view, position);
                         break;
-                    case 2:
-                        view.setAlpha(1.0f - absPosition);
-                        view.setTranslationX(-pageWidthTimesPosition * 1.5f);
+                    case Animation2:
+                        animation2(page, view, position);
                         break;
-                    case 3:
-                        view.setTranslationY(-pageWidthTimesPosition / 2f);
-                        view.setAlpha(1.0f - absPosition);
+                    case Animation3:
+                        animation3(page, view, position);
                         break;
                 }
             }
@@ -104,5 +111,31 @@ public class IntroPageTransformer implements ViewPager.PageTransformer{
                 // Create your in animation here
             }
         }
+    }
+
+    private void fadeOut(View page, View view, float position) {
+        int pageWidth = page.getWidth();
+        float pageWidthTimesPosition = pageWidth * position;
+        float absPosition = Math.abs(position);
+
+        view.setAlpha(1.0f - absPosition);
+    }
+
+    private void animation2(View page, View view, float position) {
+        int pageWidth = page.getWidth();
+        float pageWidthTimesPosition = pageWidth * position;
+        float absPosition = Math.abs(position);
+
+        view.setAlpha(1.0f - absPosition);
+        view.setTranslationX(-pageWidthTimesPosition * 1.5f);
+    }
+
+    private void animation3(View page, View view, float position) {
+        int pageWidth = page.getWidth();
+        float pageWidthTimesPosition = pageWidth * position;
+        float absPosition = Math.abs(position);
+
+        view.setTranslationY(-pageWidthTimesPosition / 2f);
+        view.setAlpha(1.0f - absPosition);
     }
 }
